@@ -1,4 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
+//base variables
+$base_delay: 300ms;
+$base_borderRadius: 20px;
+$base_backgroundColor: white;
+$base_navButtonBackgroundColor: #f7f7f7;
+$base_alterationPercentage: 5%;
+
+/// Slightly darken a color
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+/// Slightly lighten a color
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
 *,
 *::before,
 *::after {
@@ -15,17 +39,18 @@ html {
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  background-color: #f7f7f7;
 }
 
 header {
-  background-color: #ffffff;
+  background-color: $base_backgroundColor;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
   0 4px 6px -4px rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
 
   .wrapper {
-    max-width: 1000px;
+    width: 90dvw;
+    max-width: 1100px;
+    min-width: 215px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -39,6 +64,33 @@ header {
   }
 }
 
+main {
+  background-image:
+    linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+    url("../images/map2.jpg");
+
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 20px 0 20px 0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  min-height: calc(100dvh - 70px);
+}
+
+.footer {
+  margin-top: 30px !important;
+  padding: 5px 30px !important;
+
+  section {
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    background-color: $base_backgroundColor;
+    flex-wrap: wrap-reverse;
+  }
+}
+
+
 .navbar {
   position: fixed;
   top: 0;
@@ -46,7 +98,7 @@ header {
   margin: 0;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: $base_backgroundColor;
   padding: 20px;
   transition: left 0.3s;
 
@@ -65,18 +117,22 @@ header {
     text-transform: uppercase;
     cursor: pointer;
     font-weight: bold;
-    font-size: 28px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    text-decoration-thickness: 0;
+    transition-duration: $base_delay;
   }
 
-  ul a:hover {
+  ul a:hover, .current {
     color: #111111;
-    text-decoration: underline overline;
+    text-decoration: underline;
     text-decoration-thickness: 3px;
+    transition-duration: $base_delay;
   }
+}
 
-  .show {
-    left: 0 !important;
-  }
+.navbar.show {
+  left: 0 !important;
 }
 
 .hide-scroll {
@@ -89,8 +145,8 @@ header {
 
   button {
     all: unset;
-    background: #f7f7f7;
-    font-size: 42px;
+    background: $base_navButtonBackgroundColor;
+    font-size: 32px;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 15px;
@@ -100,14 +156,14 @@ header {
 
   button:hover {
     color: #222222;
-    background: white;
+    background: shade($base_navButtonBackgroundColor, $base_alterationPercentage);
   }
 }
 
 .menu-bar {
   button {
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background: #f7f7f7;
+    background: $base_navButtonBackgroundColor;
     height: 50px;
     width: 50px;
     padding: 5px 10px;
@@ -129,7 +185,7 @@ header {
   }
 
   button:hover {
-    background: white;
+    background: shade($base_navButtonBackgroundColor, $base_alterationPercentage);
   }
 
   button:hover i {
@@ -138,12 +194,14 @@ header {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 30px;
+  background-color: $base_backgroundColor;
+  border-radius: $base_borderRadius;
 }
 
-@media (min-width: 550px) {
+@media (min-width: 800px) {
   .navbar {
     all: unset;
     display: block;
@@ -159,5 +217,14 @@ header {
   }
   .close-nav, .menu-bar {
     display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer {
+    section {
+      display: block;
+      text-align: center;
+    }
   }
 }

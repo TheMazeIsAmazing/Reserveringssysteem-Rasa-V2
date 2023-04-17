@@ -15,16 +15,17 @@ html {
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  background-color: #f7f7f7;
 }
 
 header {
-  background-color: #ffffff;
+  background-color: white;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
 }
 header .wrapper {
-  max-width: 1000px;
+  width: 90dvw;
+  max-width: 1100px;
+  min-width: 215px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -34,6 +35,27 @@ header .wrapper {
 header .logo img {
   height: 50px;
   display: block;
+}
+
+main {
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("../images/map2.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 20px 0 20px 0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  min-height: calc(100dvh - 70px);
+}
+
+.footer {
+  margin-top: 30px !important;
+  padding: 5px 30px !important;
+}
+.footer section {
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  flex-wrap: wrap-reverse;
 }
 
 .navbar {
@@ -61,12 +83,16 @@ header .logo img {
   text-transform: uppercase;
   cursor: pointer;
   font-weight: bold;
-  font-size: 28px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  text-decoration-thickness: 0;
+  transition-duration: 300ms;
 }
-.navbar ul a:hover {
+.navbar ul a:hover, .navbar .current {
   color: #111111;
-  text-decoration: underline overline;
+  text-decoration: underline;
   text-decoration-thickness: 3px;
+  transition-duration: 300ms;
 }
 
 .navbar.show {
@@ -84,7 +110,7 @@ header .logo img {
 .close-nav button {
   all: unset;
   background: #f7f7f7;
-  font-size: 42px;
+  font-size: 32px;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 15px;
@@ -93,7 +119,7 @@ header .logo img {
 }
 .close-nav button:hover {
   color: #222222;
-  background: white;
+  background: #ebebeb;
 }
 
 .menu-bar button {
@@ -117,19 +143,21 @@ header .logo img {
   margin: 6px 0;
 }
 .menu-bar button:hover {
-  background: white;
+  background: #ebebeb;
 }
 .menu-bar button:hover i {
   border-color: #222222;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 30px;
+  background-color: white;
+  border-radius: 20px;
 }
 
-@media (min-width: 550px) {
+@media (min-width: 800px) {
   .navbar {
     all: unset;
     display: block;
@@ -141,9 +169,14 @@ header .logo img {
   .navbar ul a {
     font-size: inherit;
   }
-  .close-nav,
-  .menu-bar {
+  .close-nav, .menu-bar {
     display: none;
+  }
+}
+@media (max-width: 500px) {
+  .footer section {
+    display: block;
+    text-align: center;
   }
 }
 
