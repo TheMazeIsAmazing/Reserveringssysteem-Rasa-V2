@@ -1,8 +1,12 @@
 <?php
 
+namespace app;
+
+use controllers\HomeController;
+
 class Router
 {
-    protected $controller = 'HomeController'; // Default controller
+    protected $controller = HomeController::class; // Default controller
     protected $action = 'index'; // Default action
     protected $params = [];
 
